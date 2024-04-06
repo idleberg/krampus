@@ -8,6 +8,15 @@
 
 ## Installation
 
+### Homebrew
+
+```sh
+$ brew tap idleberg/asahi
+$ brew install krampus
+```
+
+### Go
+
 ```sh
 $ go install github.com/idleberg/krampus
 ```
