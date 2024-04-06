@@ -5,7 +5,7 @@ CLI tool to kill one or more processes by their port number.
 ## Installation
 
 ```sh
-$ go install github.com/idleberg/krampus@latest
+$ go install github.com/idleberg/krampus
 ```
 
 :warning: Make sure that your Go binaries path (usually `$HOME/go/bin` or `%USERPROFILE%\go\bin` on Windows) is in your system's `PATH`.
@@ -13,7 +13,7 @@ $ go install github.com/idleberg/krampus@latest
 ## Usage
 
 ```sh
-$ krampus 2024 5 12
+$ krampus 1999 1205
 ```
 
 ## Credit
