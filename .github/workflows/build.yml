@@ -1,6 +1,6 @@
-name: build
+name: Build
 
-on: 
+on:
   push:
     paths:
       - '.github/**'
