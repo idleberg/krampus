@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - '*'
+    branches:
+      - main  # or whatever your primary branch is called
 
 jobs:
   build:
