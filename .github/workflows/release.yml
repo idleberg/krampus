@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
     branches:
       - main  # or whatever your primary branch is called
 
