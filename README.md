@@ -20,13 +20,9 @@ $ go install github.com/idleberg/krampus
 $ krampus 1999 1205
 ```
 
-## Credit
-
-Name and idea inspired by Mario Nebl's [krampus](https://www.npmjs.com/package/krampus) for NodeJS.
-
 ## Benchmark
 
-```sh
+```
 Benchmark 1: node-krampus 3333
   Time (mean ± σ):     869.7 ms ±   6.0 ms    [User: 775.7 ms, System: 158.6 ms]
   Range (min … max):   861.7 ms … 884.3 ms    10 runs
@@ -39,6 +35,10 @@ Summary
   go-krampus 3333 ran
    14.15 ± 0.58 times faster than node-krampus 3333
 ```
+
+## Credit
+
+Name and idea inspired by Mario Nebl's [krampus](https://www.npmjs.com/package/krampus) for NodeJS.
 
 ## License
 
