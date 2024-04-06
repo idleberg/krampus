@@ -24,6 +24,22 @@ $ krampus 1999 1205
 
 Name and idea inspired by Mario Nebl's [krampus](https://www.npmjs.com/package/krampus) for NodeJS.
 
+## Benchmark
+
+```sh
+Benchmark 1: node-krampus 3333
+  Time (mean ± σ):     869.7 ms ±   6.0 ms    [User: 775.7 ms, System: 158.6 ms]
+  Range (min … max):   861.7 ms … 884.3 ms    10 runs
+ 
+Benchmark 2: go-krampus 3333
+  Time (mean ± σ):      61.5 ms ±   2.5 ms    [User: 37.8 ms, System: 19.5 ms]
+  Range (min … max):    58.7 ms …  73.3 ms    43 runs
+ 
+Summary
+  go-krampus 3333 ran
+   14.15 ± 0.58 times faster than node-krampus 3333
+```
+
 ## License
 
 This work is licensed under [The MIT License](LICENSE).
