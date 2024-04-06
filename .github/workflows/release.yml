@@ -9,11 +9,11 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build and Release
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goos: [windows, darwin, linux]
+        goos: [linux, darwin, windows]
         goarch: [amd64, arm64]
     steps:
       - name: Set up Go
