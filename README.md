@@ -1,6 +1,6 @@
 # :japanese_ogre: krampus
 
-> CLI tool to kill one or more processes by their port number.
+> Command-line tool to kill one or more processes by their port number.
 
 ![License](https://img.shields.io/github/license/idleberg/krampus?style=for-the-badge)
 ![Version](https://img.shields.io/github/v/release/idleberg/krampus?sort=semver&style=for-the-badge)
