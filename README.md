@@ -25,7 +25,7 @@ $ go install github.com/idleberg/krampus
 ## Usage
 
 ```sh
-// Let's kill your web-server
+# Let's kill your web-server
 $ krampus 80 443
 ```
 
