@@ -17,7 +17,7 @@ $ brew install idleberg/asahi/krampus --build-from-source
 ### Go
 
 ```sh
-$ go install github.com/idleberg/krampus
+$ go install github.com/idleberg/krampus@latest
 ```
 
 :warning: Make sure that your Go binaries path (usually `$HOME/go/bin` or `%USERPROFILE%\go\bin` on Windows) is in your system's `PATH`.
