@@ -3,6 +3,8 @@ module github.com/idleberg/krampus
 go 1.22.1
 
 require (
+	github.com/alecthomas/kong v0.9.0
+	github.com/blang/semver v3.5.1+incompatible
 	github.com/charmbracelet/log v0.4.0
 	github.com/shirou/gopsutil v3.21.11+incompatible
 )
