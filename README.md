@@ -22,6 +22,10 @@ $ go install github.com/idleberg/krampus@latest
 
 :warning: Make sure that your Go binaries path (usually `$HOME/go/bin` or `%USERPROFILE%\go\bin` on Windows) is in your system's `PATH`.
 
+### Manual Installation
+
+You can download the [latest release](https://github.com/idleberg/krampus/releases/) from GitHub and install it manually.
+
 ## Usage
 
 ```sh
