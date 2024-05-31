@@ -11,7 +11,7 @@
 ### Homebrew
 
 ```sh
-$ brew install idleberg/asahi/krampus --build-from-source
+$ brew install idleberg/tap/krampus --build-from-source
 ```
 
 ### Go
