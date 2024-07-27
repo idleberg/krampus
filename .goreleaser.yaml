@@ -30,7 +30,7 @@ builds:
       - darwin
 
     ldflags:
-      - -s -w -X "main.Version={{.Version}}"
+      - -s -w -X "main.Version={{ .Version }}"
 
 archives:
   - format: tar.gz
