@@ -15,8 +15,8 @@ import (
 var Version string
 
 var CLI struct {
-	Ports []string `arg:"" default:""`
-	Version bool `short:"v" help:"Show version."`
+	Ports   []string `arg:"" default:""`
+	Version bool     `short:"v" help:"Show version."`
 }
 
 var (
@@ -26,29 +26,42 @@ var (
 )
 
 func main() {
-	kong.Parse(&CLI)
+	ctx := kong.Parse(&CLI)
 
 	switch true {
-		case CLI.Version:
-			printVersion()
+	case CLI.Version:
+		printVersion()
 
-		default:
-			killPorts()
+	default:
+		// Check if all arguments are numbers
+		hasValidNumber := false
+		for _, port := range CLI.Ports {
+			if _, err := strconv.Atoi(port); err == nil {
+				hasValidNumber = true
+			}
+		}
+
+		if !hasValidNumber {
+			ctx.PrintUsage(false)
+			os.Exit(1)
+		}
+
+		killPorts()
 	}
 }
 
 func printVersion() {
 	ver, err := semver.Parse(Version)
 
-		var outputVersion string
+	var outputVersion string
 
-		if err == nil {
-			outputVersion = "v" + Version
-		} else {
-			outputVersion = ver.String()
-		}
+	if err == nil {
+		outputVersion = "v" + Version
+	} else {
+		outputVersion = ver.String()
+	}
 
-		fmt.Println(outputVersion)
+	fmt.Println(outputVersion)
 }
 
 func killPorts() {
@@ -82,7 +95,7 @@ func getPID(port string) (int32, error) {
 
 	portInt, err := strconv.Atoi(port)
 	if err != nil {
-		return 0, fmt.Errorf("invalid port %s", port)
+		return 0, fmt.Errorf("invalid port \"%s\"", port)
 	}
 
 	for _, conn := range conns {
@@ -91,7 +104,7 @@ func getPID(port string) (int32, error) {
 		}
 	}
 
-	logger.Warn(fmt.Sprintf("no process found listening on port %s", port))
+	logger.Warnf("no process found listening on port %s", port)
 	return -1, nil
 }
 
@@ -106,7 +119,7 @@ func killProcess(pid int32) error {
 		return err
 	}
 
-	logger.Info(fmt.Sprintf("killed process with PID %d", pid))
+	logger.Infof("killed process with PID %d", pid)
 
 	return nil
 }
