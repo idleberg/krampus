@@ -14,6 +14,12 @@
 $ brew install idleberg/tap/krampus --build-from-source
 ```
 
+### pkgx
+
+```sh
+$ pkgx install krampus
+```
+
 ### Go
 
 ```sh
