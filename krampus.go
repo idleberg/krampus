@@ -8,8 +8,6 @@ import (
 	"github.com/alecthomas/kong"
 	"github.com/blang/semver"
 	"github.com/charmbracelet/log"
-	"github.com/shirou/gopsutil/net"
-	"github.com/shirou/gopsutil/process"
 )
 
 var Version string
@@ -28,6 +26,12 @@ var (
 func main() {
 	ctx := kong.Parse(&CLI)
 
+	// Print help if no arguments are passed
+	if len(CLI.Ports) == 0 && !CLI.Version {
+		ctx.PrintUsage(false)
+		os.Exit(0)
+	}
+
 	switch true {
 	case CLI.Version:
 		printVersion()
@@ -38,15 +42,29 @@ func main() {
 		for _, port := range CLI.Ports {
 			if _, err := strconv.Atoi(port); err == nil {
 				hasValidNumber = true
+			} else {
+				logger.Warnf("Ignoring invalid port: %s. Error: %v", port, err)
 			}
 		}
 
 		if !hasValidNumber {
+			logger.Error("No valid ports provided, printing `krampus --help`\n")
 			ctx.PrintUsage(false)
 			os.Exit(1)
 		}
 
-		killPorts()
+		// Filter out non-number arguments
+		validPorts := []string{}
+		for _, port := range CLI.Ports {
+			if _, err := strconv.Atoi(port); err == nil {
+				validPorts = append(validPorts, port)
+			}
+		}
+
+		// Proceed with valid ports
+		for _, port := range validPorts {
+			fmt.Printf("Processing port: %s\n", port)
+		}
 	}
 }
 
@@ -62,64 +80,4 @@ func printVersion() {
 	}
 
 	fmt.Println(outputVersion)
-}
-
-func killPorts() {
-	ports := os.Args[1:]
-
-	for _, port := range ports {
-		pid, err := getPID(port)
-
-		if pid == -1 {
-			continue
-		}
-
-		if err != nil {
-			logger.Error(err)
-			continue
-		}
-
-		err = killProcess(pid)
-
-		if err != nil {
-			logger.Error(err)
-		}
-	}
-}
-
-func getPID(port string) (int32, error) {
-	conns, err := net.Connections("all")
-	if err != nil {
-		return 0, err
-	}
-
-	portInt, err := strconv.Atoi(port)
-	if err != nil {
-		return 0, fmt.Errorf("invalid port \"%s\"", port)
-	}
-
-	for _, conn := range conns {
-		if conn.Status == "LISTEN" && conn.Laddr.Port == uint32(portInt) {
-			return conn.Pid, nil
-		}
-	}
-
-	logger.Warnf("no process found listening on port %s", port)
-	return -1, nil
-}
-
-func killProcess(pid int32) error {
-	proc, err := process.NewProcess(pid)
-	if err != nil {
-		return err
-	}
-
-	err = proc.Kill()
-	if err != nil {
-		return err
-	}
-
-	logger.Infof("killed process with PID %d", pid)
-
-	return nil
 }
