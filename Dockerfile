@@ -7,7 +7,7 @@ WORKDIR /app
 COPY go.mod go.sum krampus.go ./
 
 RUN go mod download
-RUN go build -ldflags="-s -w -X main.Version=0.2.0" krampus.go
+RUN go build -ldflags="-s -w -X main.Version=0.2.1" krampus.go
 
 
 # Final Stage
