@@ -6,7 +6,7 @@ pkgs.buildGoModule rec {
 
   src = ./.;
 
-  vendorHash = "sha256-SzCpleSRUYSBHuvJA7Rs49IvTjI5ILBW68QkYYCPqZ4=";
+  vendorHash = "sha256-c6aTTAKfk0h2r51wnDicKNi7iilT4SGjNxHawAD1GYY=";
 
   ldflags = [ "-s" "-w" "-X=main.Version=${version}" ];
 }
