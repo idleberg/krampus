@@ -4,7 +4,7 @@
 
 ![License](https://img.shields.io/github/license/idleberg/krampus?style=for-the-badge)
 ![Version](https://img.shields.io/github/v/release/idleberg/krampus?sort=semver&style=for-the-badge)
-[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/node-dent/default.yml?style=for-the-badge)](https://github.com/idleberg/krampus/actions)
+[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/krampus/build.yml?style=for-the-badge)](https://github.com/idleberg/krampus/actions)
 
 ## Installation
 
