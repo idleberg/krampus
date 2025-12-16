@@ -60,8 +60,14 @@ func printVersion() {
 func killPorts() {
 	ports := os.Args[1:]
 
+	conns, err := net.Connections("all")
+	if err != nil {
+		logger.Error("failed to get connections", "error", err)
+		return
+	}
+
 	for _, port := range ports {
-		pid, err := getPID(port)
+		pid, err := getPIDFromConnections(conns, port)
 
 		if pid == -1 {
 			continue
@@ -80,12 +86,7 @@ func killPorts() {
 	}
 }
 
-func getPID(port string) (int32, error) {
-	conns, err := net.Connections("all")
-	if err != nil {
-		return 0, err
-	}
-
+func getPIDFromConnections(conns []net.ConnectionStat, port string) (int32, error) {
 	portInt, err := strconv.Atoi(port)
 	if err != nil {
 		return 0, fmt.Errorf("invalid port %s", port)
@@ -99,6 +100,14 @@ func getPID(port string) (int32, error) {
 
 	logger.Warnf("no process found listening on port %s", port)
 	return -1, nil
+}
+
+func getPID(port string) (int32, error) {
+	conns, err := net.Connections("all")
+	if err != nil {
+		return 0, err
+	}
+	return getPIDFromConnections(conns, port)
 }
 
 func killProcess(pid int32, port string) error {
