@@ -97,7 +97,7 @@ func getPID(port string) (int32, error) {
 		}
 	}
 
-	logger.Warn(fmt.Sprintf("no process found listening on port %s", port))
+	logger.Warnf("no process found listening on port %s", port)
 	return -1, nil
 }
 
@@ -112,7 +112,7 @@ func killProcess(pid int32, port string) error {
 		return err
 	}
 
-	logger.Info(fmt.Sprintf("killed process with PID %d, listening on port %s", pid, port))
+	logger.Infof("killed process with PID %d, listening on port %s", pid, port)
 
 	return nil
 }
