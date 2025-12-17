@@ -127,7 +127,7 @@ func killProcess(pid int32, port string) error {
 
 		// Check if current user owns the process (or is root)
 		if currentUID != 0 && currentUID != int(uids[0]) {
-			return fmt.Errorf("permission denied: process %d is owned by UID %d (current user: %d). Use --force to override", pid, uids[0], currentUID)
+			return fmt.Errorf("permission denied: process %d is owned by another user. Use --force to override", pid, uids[0], currentUID)
 		}
 	}
 
