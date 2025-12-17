@@ -58,7 +58,7 @@ func printVersion() {
 }
 
 func killPorts() {
-	ports := os.Args[1:]
+	ports := CLI.Ports
 
 	conns, err := net.Connections("all")
 	if err != nil {
