@@ -17,6 +17,7 @@ var Version string
 var CLI struct {
 	Ports   []string `arg:"" default:""`
 	Version bool     `short:"v" help:"Show version."`
+	Force   bool     `short:"f" help:"Force closing processes by all owners."`
 }
 
 var (
@@ -114,6 +115,20 @@ func killProcess(pid int32, port string) error {
 	proc, err := process.NewProcess(pid)
 	if err != nil {
 		return err
+	}
+
+	if !CLI.Force {
+		currentUID := os.Getuid()
+
+		uids, err := proc.Uids()
+		if err != nil {
+			return fmt.Errorf("failed to get process owner: %w", err)
+		}
+
+		// Check if current user owns the process (or is root)
+		if currentUID != 0 && currentUID != int(uids[0]) {
+			return fmt.Errorf("permission denied: process %d is owned by UID %d (current user: %d). Use --force to override", pid, uids[0], currentUID)
+		}
 	}
 
 	err = proc.Kill()
