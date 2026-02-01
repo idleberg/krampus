@@ -8,7 +8,7 @@
 
 version: 2
 
-project_name: 'krampus'
+project_name: "krampus"
 
 before:
   hooks:
@@ -54,4 +54,5 @@ changelog:
   filters:
     exclude:
       - "^docs:"
+      - "^ci:"
       - "^test:"
