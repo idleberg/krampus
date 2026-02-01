@@ -1,8 +1,8 @@
-{ pkgs }:
+{ pkgs, version ? "dev" }:
 
 pkgs.buildGoModule rec {
   pname = "krampus";
-  version = "0.2.1";
+  inherit version;
 
   src = ./.;
 

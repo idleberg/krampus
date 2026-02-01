@@ -2,12 +2,14 @@
 ####################
 FROM golang:1.25-alpine AS builder
 
+ARG VERSION=dev
+
 WORKDIR /app
 
 COPY go.mod go.sum krampus.go ./
 
 RUN go mod download
-RUN go build -ldflags="-s -w -X main.Version=0.2.1" krampus.go
+RUN go build -ldflags="-s -w -X main.Version=${VERSION}" krampus.go
 
 
 # Final Stage
