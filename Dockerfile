@@ -6,12 +6,18 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=dev
 
+ARG VERSION=dev
+
 WORKDIR /app
 
 COPY go.mod go.sum krampus.go ./
 
 RUN go mod download
+<<<<<<< HEAD
 RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -ldflags="-s -w -X main.Version=$VERSION" krampus.go
+=======
+RUN go build -ldflags="-s -w -X main.Version=${VERSION}" krampus.go
+>>>>>>> 8ec64eab587d5aa8525eef509639b260b527444e
 
 
 # Final Stage
