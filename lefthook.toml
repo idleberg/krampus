@@ -1,0 +1,9 @@
+[pre-commit.commands.format]
+glob = "*.go"
+run = "mise run format"
+stage_fixed = true
+
+[pre-commit.commands.test]
+glob = "*.go"
+run = "mise run test"
+stage_fixed = true

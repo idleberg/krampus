@@ -1,5 +1,6 @@
 [tools]
 go = "1.25.0"
+lefthook = "latest"
 
 [tasks.build]
 description = "Build the Go application"
