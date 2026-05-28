@@ -4,7 +4,7 @@ lefthook = "latest"
 
 [tasks.build]
 description = "Build the Go application"
-run = "go build -v -ldflags=\"-s -w -X main.Version=ci\" ./..."
+run = "go build -v -ldflags=\"-s -w -X main.Version=dev\" ./..."
 
 [tasks.fmt]
 description = "Format the Go code"
