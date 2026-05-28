@@ -20,10 +20,8 @@ jobs:
       GO111MODULE: "on"
 
     steps:
-      - name: Install Go
-        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
-        with:
-          go-version: ~1.25
+      - name: Set up mise
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
 
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
