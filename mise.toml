@@ -14,6 +14,6 @@ run = "go fmt ./..."
 description = "Run the Go tests"
 run = "go test ./..."
 
-[tasks.docker-build]
+[tasks."docker:build"]
 description = "Build the Docker image"
 run = "docker build -t krampus ."
