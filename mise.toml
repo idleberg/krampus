@@ -1,0 +1,14 @@
+[tools]
+go = "1.25.0"
+
+[tasks.build]
+description = "Build the Go application"
+run = "go build -v -ldflags=\"-s -w -X main.Version=ci\" ./..."
+
+[tasks.fmt]
+description = "Format the Go code"
+run = "go fmt ./..."
+
+[tasks.test]
+description = "Run the Go tests"
+run = "go test ./..."
