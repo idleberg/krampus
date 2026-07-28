@@ -14,6 +14,12 @@
 $ brew install idleberg/asahi/krampus
 ```
 
+### Winget
+
+```sh
+$ winget install idleberg.krampus
+```
+
 ### pkgx
 
 ```sh
